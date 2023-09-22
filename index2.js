@@ -1,20 +1,20 @@
-//this function takes the speed of a driver as an input
-//it then uses the speed to determine the points to award the driver
-//if the driver has exceeded 12 points, there license is suspended.
+//this function determines penalty points to overspeeding drivers or suspends their licenses
 function driverMonitoring(speed) {
     //calculation of meter points
-    let meter = (speed-70)/5;
-    /*if the points are less than or equal to 0, it returns ok. 
-    this corresponds to the speed being less than 70*/
-    if(meter <= 0) {
-      return "Ok";
-    }
-    /* if the points are less than 12, the function returns the points awarded*/
-    else if(meter <= 12) {
-      return `Points: ${meter}`
-    }
-    //if they are more than 12, the driver's license is suspended.
-    else if(meter > 12) {
-      return `License suspended`
-    }
+    let pointsMeter = (speed-70)/5;
+    //this function ensures that the meter is rounded down
+    //hence is always a whole number
+    let actualPointsMeter = Math.floor(pointsMeter);
+  //if the speed is less than 70 no point has been awarded yet, it returns ok.
+  if(actualPointsMeter <= 0) {
+    return "Ok";
   }
+  //if the points awarded are less than 12, it returns the points tally awarded.
+  else if(actualPointsMeter <= 12) {
+    return `Points: ${actualPointsMeter}`
+  }
+  //if the points tally exceeds 12, the license is suspended
+  else if(actualPointsMeter > 12) {
+    return `License suspended`
+  }
+}
